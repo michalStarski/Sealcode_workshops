@@ -1,0 +1,60 @@
+<!doctype html>
+
+<html lang="pl">
+	<head>
+		<title>Formularz</title>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1.0">
+	</head>
+	<body>
+   <main>
+    <fieldset>
+        <legend>Szczegóły konta:</legend>
+        <form action="##" method="post">
+            <label for="name">
+                Imię:
+                <input type="text" id="name">
+            </label>
+            <br><br>
+            <label for="email">
+               Email:
+                <input type="text" id="email">
+            </label>
+        </form>
+    </fieldset>
+    <br>
+    <fieldset>
+        <legend>Kilka informacji o Tobie</legend>
+        <form action="##" method="post">
+            <br>
+            Czy odwiedzisz nas ponownie?<br>
+            <label for="comeback_yes">
+            <input type="radio" id="comeback_yes">
+            Tak
+            </label>
+            <label for="comeback_no">
+            <input type="radio" id="comeback_no">
+            Nie
+            </label>
+            <label for="comeback_mby">
+            <input type="radio" id="comeback_mby">
+            Może
+            </label>
+            <br><br>
+            <label for="comment">
+               Komentarz: <br>
+                <textarea name="comment" id="comment" cols="60" rows="10"></textarea>
+            </label>
+            <label for="update"></label><br>
+            <label for="inform">
+                <input type="checkbox" checked="checked" id="update">
+             Chcę być informowany o aktualizacjach.
+            </label><br>
+            <label for="submit">
+            <input type="submit" id="submit" value="Prześlij informacje">
+            </label>
+        </form>
+    </fieldset>
+    </main>
+	</body>
+</html>
