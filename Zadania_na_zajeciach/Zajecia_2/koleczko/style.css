@@ -1,0 +1,40 @@
+
+.koleczko {
+    background-color:yellow;
+    width:200px;
+    height:200px;
+    border-radius: 200px;
+    animation: circle 4s infinite;
+    position:absolute;
+}
+
+@keyframes circle{
+    0%{
+        
+        background-color:yellow;
+        top: 0;
+        left: 0;
+    }
+    25%{
+        background-color:purple;
+        top: 0;
+        left: 50%;
+    }
+    50%{
+        background-color:green;
+        top:50%;
+        left:50%;
+        
+    }
+    75%{
+        background-color:red;
+        left:0;
+        top:50%;
+        
+    }
+    100%{
+        background-color:yellow;
+        left: 0;
+        top: 0;
+    }
+}
