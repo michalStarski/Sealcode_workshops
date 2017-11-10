@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css?family=Ubuntu');
+*{
+    padding:0 ;
+    margin: 0;
+}
+body{
+display:flex;
+justify-content: center;
+
+}
+.wrapper{
+    height:100vh;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    
+}
+.preloader{
+
+    
+    width:200px;
+    height:200px;
+    border-radius: 100px;
+    display:flex;
+    justify-content: space-between;
+    position:relative;
+    animation: spin 2000ms linear infinite;
+    margin: 20px;
+    
+}
+
+
+.preloader .unitA,
+.preloader .unitB,
+.preloader .unitC,
+.preloader .unitD,
+.preloader .unitE,
+.preloader .unitF{
+    background-color: yellow;
+    width:30px;
+    height:30px;
+    border-radius: 30px;
+    position:absolute;
+    top:50%; left:50%;
+    
+}
+.unitA { 
+    transform: translate(50px);
+        animation: change 5s ease-out infinite;
+}
+.unitB { 
+    transform: rotate(80deg) translate(50px);
+    animation: change 5s linear infinite;
+    animation-delay: 0.1s;
+    animation-fill-mode: backwards;
+}
+.unitC { 
+    transform: rotate(150deg) translate(70px);
+    animation: change 5s linear infinite;
+    animation-delay: 0.2s;
+    animation-fill-mode: backwards;
+}
+.unitD { 
+    transform: rotate(197deg) translateX(90px);
+    animation: change 5s linear infinite;
+    animation-delay: 0.3s;
+    animation-fill-mode: backwards;
+}
+.unitE { 
+    transform: rotate(240deg) translate(90px);
+    animation: change 5s linear infinite;
+    animation-delay: 0.4s;
+    animation-fill-mode: backwards;
+}
+.unitF { 
+    transform: rotate(290deg) translate(73px);
+    animation: change 5s linear infinite;
+    animation-delay: 0.5s;
+    animation-fill-mode: backwards;
+}
+
+
+@keyframes spin{
+from{transform:rotate(0deg);}
+    to{transform:rotate(360deg);}
+}
+
+
+@keyframes change{
+    0%{
+        background-color:yellow;
+    }
+    25%{
+        background-color:firebrick;
+    }
+    50%{
+        background-color:fuchsia
+    }
+    75%{
+        background-color:darkblue
+    }
+    100%{
+        background-color:dimgray;
+    }
+}
+.loading{
+    font-size:70px;
+    font-family: 'Ubuntu', sans-serif;
+    animation: load 3s infinite;
+}
+.loading::after{
+    content:" ";
+    border: 1px solid #000000;
+    animation: blink 0.7s  infinite;
+}
+
+
+@keyframes blink{
+    from{
+        opacity:1;
+    }
+    to{
+        opacity:0;
+    }
+
+}
+
+@keyframes load{
+    from{
+        display:none;
+    }
+    to{
+        display:block;
+    }
+}
