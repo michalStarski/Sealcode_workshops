@@ -1,0 +1,14 @@
+body{
+  margin:100px;
+  width:750px;
+  font-family: Arial, sans-serif;
+  color:#665544;
+}
+p{
+  width:230px;
+  background-color:#efefef;
+  float:left;
+}
+.p3{
+  clear:left;
+}
