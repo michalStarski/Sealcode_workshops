@@ -1,0 +1,80 @@
+<!doctype html>
+
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>todo.list</title>
+    <meta name="author" content="SitePoint">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+        <img class="logo" src="./img/logo.png" alt="logo">
+    <span class="titleTODO">todo</span><span class="titleLIST">.list</span>
+        </div>
+        <img class="hamburger" src="./img/Hamburger_icon.png" alt="openMenu">
+    </header>
+    <main>
+        <div class="wrapper">
+        <div class="content">
+            <nav>
+            <div class="menu">
+                <div class="user">
+                    <img src="./img/user.png" alt="userIcon">
+                    <span class="greetings">Hello, Username</span>
+                </div>
+                    <ul class="navigation">
+                        <li><button class="ongoing">On-going Tasks</button></li>
+                        <li><button class="completed">Completed Tasks</button></li>
+                        <li><button class="stats">Statistics</button></li>
+                    </ul>
+            </div>
+            </nav>
+            <div class="app">
+                <div class="appHeader">
+                    <img class="thinkEmote" src="./img/think.png" alt="thinkEmote">
+                    <span class="appTitle">What are your plans for today?</span>
+                </div>
+
+                <div class="taskList">
+                    <ul class="whatToDo">
+                        <li>I will do task 1 <button class="editIcon"><img src="./img/edit.svg" alt="edit"></button><button class="deleteIcon"><img
+                                src="./img/delete.png" alt="delete"></button><button class="doneIcon"><img
+                                src="./img/done.png" alt="done"></button></li>
+                        <li>I will do task 2 <button class="editIcon"><img src="./img/edit.svg" alt="edit"></button><button class="deleteIcon"><img
+                                src="./img/delete.png" alt="delete"><button class="doneIcon"><img
+                                src="./img/done.png" alt="done"></button></button></li>
+                        <li>I will do task 3 <button class="editIcon"><img src="./img/edit.svg" alt="edit"></button><button class="deleteIcon"><img
+                                src="./img/delete.png" alt="delete"><button class="doneIcon"><img
+                                src="./img/done.png" alt="done"></button></button></li>
+                        <li>I will do task 4 <button class="editIcon"><img src="./img/edit.svg" alt="edit"></button><button class="deleteIcon"><img
+                                src="./img/delete.png" alt="delete"><button class="doneIcon"><img
+                                src="./img/done.png" alt="done"></button></button></li>
+                        <li>I will do task 5 <button class="editIcon"><img src="./img/edit.svg" alt="edit"></button><button class="deleteIcon"><img
+                                src="./img/delete.png" alt="delete"><button class="doneIcon"><img
+                                src="./img/done.png" alt="done"></button></button></li>
+                    </ul>
+                </div>
+                <div class="addTask">
+                    <form class="taskInput" method="get">
+                        <label for="task">
+                            <span class ="addHeader">Add a task</span>
+                            <input id ="task" type="text" placeholder="What are you going to do?">
+                        </label>
+                        <button class="addButton">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </main>
+    <footer>
+        <span class="credits">&copy;Michał Starski 2017, todo.list made for Sealhub workshops</span>
+    </footer>
+</body>
+</html>
