@@ -1,0 +1,189 @@
+/*   Initial Settings    */
+
+*{
+    margin:0;
+    line-height: 2rem;
+    padding:0;
+    font-size: 16px;
+    font-family: 'Ubuntu', sans-serif;
+}
+
+body{
+    background-color:#6F6F6F;
+}
+
+
+header{
+    height:5vh;
+    width:100vw;
+    background-color:#8FECC8;
+}
+
+.logo{
+    width:2rem;
+    height:2rem;
+    margin-left:2rem;
+}
+
+.titleTODO{
+    font-size:2rem;
+    margin-left:3rem;
+    color:#4A4A4A;
+}
+.titleLIST{
+    color:#6F6F6F;
+}
+.hamburger{
+    height:2rem;
+    width:2rem;
+    float:right;
+}
+.wrapper{
+    display:flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.menu{
+    width:20vw;
+    height:90vh;
+    background-color:#4A4A4A;
+    margin-top:4px;
+    display:none;
+}
+
+.app {
+    height:90vh;
+    width: 60vw;
+    background-color: #FF395E;
+    margin: 2rem;
+    border:3px solid rgba(143, 236, 200, 0.7);
+
+
+}
+.appHeader{
+    height:2rem;
+    background-color:#4A4A4A;
+    display:flex;
+    justify-content: center;
+
+}
+.thinkEmote{
+    width:4rem;
+    height:4rem;
+
+
+}
+.appTitle{
+    color:#AFAFAF;
+    font-family: Roboto, sans-serif;
+
+}
+.taskList{
+    height:26rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.whatToDo{
+    list-style: none;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.editIcon, .deleteIcon{
+    margin-left:2rem;
+    background:none;
+    border:none;
+}
+.editIcon img, .deleteIcon img{
+    width:1rem;
+    height:1rem;
+}
+
+.addHeader{
+    color:#4A4A4A;
+}
+
+.addTask{
+    height:5rem;
+    background-color:#F1F1F1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.taskInput{
+    text-align: center;
+
+}
+.taskInput #task{
+    width:13rem;
+}
+.taskInput #task::placeholder{
+    text-align: center;
+    width:13rem;
+}
+.addButton{
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0px;
+    color: #ffffff;
+    font-size: 1rem;
+    background: #8FECC8;
+    text-decoration: none;
+    width:5rem;
+    height:2rem;
+
+}
+
+.addButton:hover {
+    background: #ff395e;
+    text-decoration: none;
+}
+
+footer{
+    width:100vw;
+    height:5vh;
+    background-color:#4A4A4A;
+}
+footer .credits{
+    font-size:0.5rem;
+    margin-left:1rem;
+    color:#6F6F6F;
+}
+
+@media screen and (min-width: 1024px) {
+    content{
+        display:flex;
+        flex-direction: row;
+    }
+    .hamburger{
+        display:none;
+    }
+    .menu{
+        display:inline-block;
+        display:flex;
+        align-items: center;
+        justify-content: center;
+        margin:0;
+        border:3px solid #4A4A4A;
+
+    }
+    .navigation{
+        list-style: none;
+        display:flex;
+        flex-direction: column;
+    }
+    .ongoing, .completed{
+        background:none;
+        border:none;
+        margin-bottom:3rem;
+        color:#6F6F6F;
+    }
+
+}    .app{
+         margin:0;
+     }
