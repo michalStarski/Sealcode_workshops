@@ -8,71 +8,60 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
 
 </head>
 
 <body>
     <header>
-        <div class="container">
-        <img class="logo" src="./img/logo.png" alt="logo">
-    <span class="titleTODO">todo</span><span class="titleLIST">.list</span>
+        <div class="background"></div>
+        <div class="logoWrapper">
+        <span class="logoTodo">todo</span><span class="logoList">.list</span><br>
         </div>
-        <img class="hamburger" src="./img/Hamburger_icon.png" alt="openMenu">
+        <div class="subTitleWrapper">
+            <span class="subTitle1">Your life.&nbsp</span><span class="subTitle2">Planned.</span>
+        </div>
     </header>
-    <main>
-        <div class="wrapper">
-        <div class="content">
-            <nav>
-            <div class="menu">
-                <div class="user">
-                    <img src="./img/user.png" alt="userIcon">
-                    <span class="greetings">Hello, Username</span>
+    <content>
+        <h1>All things. One place.</h1>
+    <div class="app">
+        <div class="appArea">
+            <div class="userBar">
+                <img src="img/user.png" alt="userAvatar">
+                <div class="greetingsWrapper">
+                <span class="greetings">hello</span><span class="username">Username</span>
                 </div>
-                    <ul class="navigation">
-                        <li><button class="ongoing">On-going Tasks</button></li>
-                        <li><button class="completed">Completed Tasks</button></li>
-                        <li><button class="stats">Statistics</button></li>
-                    </ul>
-            </div>
-            </nav>
-            <div class="app">
-                <div class="appHeader">
-                    <img class="thinkEmote" src="./img/think.png" alt="thinkEmote">
-                    <span class="appTitle">What are your plans for today?</span>
+                <img src="img/Hamburger_icon.png" alt="toogleMenu">
+                <nav>
+
+                </nav>
+                <div class="taskList">
+                    <div class="listWrapper">
+                    <ol class="tasks">
+                        <li>Lorem Ipsum is simply</li>
+                        <li>It is a long established</li>
+                        <li>There are many</li>
+                        <li>The standard chunk</li>
+                        <li>de Finibus Bonorum</li>
+                        <li>Latin words, combined</li>
+                    </ol>
+                    </div>
+                </div>
+                <div class="addingPanel">
+                    <label for="addTask">
+                        Add a task!
+                    <input id="addTask" type="text" placeholder="What are you going to do today?">
+                        <button class="addButton"><img src="img/add.png" alt="addButton"></button>
+                    </label>
                 </div>
 
-                <div class="taskList">
-                    <ul class="whatToDo">
-                        <li>I will do task 1 <button class="editIcon"><img src="./img/edit.svg" alt="edit"></button><button class="deleteIcon"><img
-                                src="./img/delete.png" alt="delete"></button><button class="doneIcon"><img
-                                src="./img/done.png" alt="done"></button></li>
-                        <li>I will do task 2 <button class="editIcon"><img src="./img/edit.svg" alt="edit"></button><button class="deleteIcon"><img
-                                src="./img/delete.png" alt="delete"><button class="doneIcon"><img
-                                src="./img/done.png" alt="done"></button></button></li>
-                        <li>I will do task 3 <button class="editIcon"><img src="./img/edit.svg" alt="edit"></button><button class="deleteIcon"><img
-                                src="./img/delete.png" alt="delete"><button class="doneIcon"><img
-                                src="./img/done.png" alt="done"></button></button></li>
-                        <li>I will do task 4 <button class="editIcon"><img src="./img/edit.svg" alt="edit"></button><button class="deleteIcon"><img
-                                src="./img/delete.png" alt="delete"><button class="doneIcon"><img
-                                src="./img/done.png" alt="done"></button></button></li>
-                        <li>I will do task 5 <button class="editIcon"><img src="./img/edit.svg" alt="edit"></button><button class="deleteIcon"><img
-                                src="./img/delete.png" alt="delete"><button class="doneIcon"><img
-                                src="./img/done.png" alt="done"></button></button></li>
-                    </ul>
-                </div>
-                <div class="addTask">
-                    <form class="taskInput" method="get">
-                        <label for="task">
-                            <span class ="addHeader">Add a task</span>
-                            <input id ="task" type="text" placeholder="What are you going to do?">
-                        </label>
-                        <button class="addButton">Add</button>
-                    </form>
-                </div>
             </div>
         </div>
+    </div>
+        <div class="add">
+
         </div>
-    </main>
+    </content>
     <footer>
         <span class="credits">&copy;Michał Starski 2017, todo.list made for Sealhub workshops</span>
     </footer>

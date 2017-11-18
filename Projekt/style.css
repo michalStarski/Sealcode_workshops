@@ -2,301 +2,196 @@
 
 *{
     margin:0;
-    line-height: 2rem;
+    line-height: 1.5em;
     padding:0;
     font-size: 16px;
     font-family: 'Ubuntu', sans-serif;
 }
-
 body{
-    background-color:#6F6F6F;
+    background: #e3e3e3;
+    display:flex;
+    flex-direction:column;
+    align-items: center;
 }
 
-
+/*-------------------------------HEADER----------------------------*/
 header{
-    height:5vh;
     width:100vw;
-    background-color:#8FECC8;
+    height:15rem;
+    background-image: url("img/background.jpg");
+    background-position:center;
+    background-size: cover;
+    position:relative;
     display:flex;
     align-items: center;
-    justify-content: space-between;
+
+}
+.background{
+    width:100vw;
+    height:15rem;
+    background-image: url("img/background.jpg");
+    background-position:center;
+    background-size: cover;
+    filter: blur(2px);
+    box-shadow: inset 0 0 0 1000px rgba(117, 73, 68,0.5);
+    position:absolute;
 }
 
-.content{
+.logoTodo,.logoList{
+    filter:blur(0px);
+    font-size:4rem;
+}
+.logoList{
+    display:flex;
+    align-items: flex-start;
+    font-size:2rem;
+    color:#A39C9D;
+}
+.logoTodo{
+    color:#e3e3e3;
+}
+.logoWrapper{
     width:100vw;
-    height:93vh;
+    display:flex;
+    justify-content: center;
+    position:absolute;
+
+}
+.logo{
+    width:5em;
+    height:5em;
+    position:absolute;
+    z-index:5;
+    bottom:50%;
+}
+.subTitle1,.subTitle2{
+    font-size:0.8rem;
+    z-index:200;
+    margin-top:6rem;
+
+}
+.subTitle1{
+    color:#e3e3e3;
+}
+.subTitle2{
+    color:#F1D798;
+}
+.subTitleWrapper{
+    height:100vh;
+    width:100vw;
     display:flex;
     justify-content: center;
     align-items: center;
+}
+/*---------------------CONTENT----------------------------------*/
+content{
+    background-color:#754944;
+    width:100vw;
+    height:40rem;
+    display:flex;
+    justify-content: center;
+    font-family: Roboto, sans-serif;
+    color:#e3e3e3;
+    flex-direction: column;
+}
+content h1{
+    font-size:1.5rem;
+    text-align: center;
+
+}
+.app{
+    height:30rem;
+    display:flex;
+    justify-content: center;
+    margin-top:2rem;
+}
+.appArea {
+    width: 16rem;
+    height: 30rem;
+    background: #b79891; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #b79891, #94716b); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #b79891, #94716b); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    border-radius: 2rem;
+    display:flex;
     flex-direction: column;
 
 }
-
-
-.container{
+.userBar{
+    background-color:white;
+    height:3rem;
+    width:16rem;
+    background-color:#F1D798;
     display:flex;
-    align-items: center;
-}
-
-.logo{
-    width:2rem;
-    height:2rem;
-    margin-left:2rem;
-}
-
-.titleTODO{
-    font-size:2rem;
-    margin-left:3rem;
-    color:#4A4A4A;
-}
-.titleLIST{
-    color:#6F6F6F;
-}
-.hamburger{
-    height:2rem;
-    width:2rem;
-    float:right;
-    margin-right: 2rem;
-}
-.wrapper{
-    display:flex;
-    justify-content: center;
-    flex-direction: row;
-}
-
-.menu{
-    width:20vw;
-    height:50vh;
-    background-color:#4A4A4A;
-    margin-top:4px;
-    display:none;
-
-}
-
-
-
-.app {
-    height:30vh;
-    width: 60vw;
-    background-color: #FF395E;
-    margin: 2rem;
-    border:3px solid rgba(143, 236, 200, 0.7);
-
-
-
-}
-.appHeader{
-    height:2rem;
-    background-color:#4A4A4A;
-    display:flex;
-    justify-content: center;
-
-}
-.thinkEmote{
-    width:4rem;
-    height:4rem;
-
-
-}
-.appTitle{
-    color:#AFAFAF;
-    font-family: Roboto, sans-serif;
-
-}
-.taskList{
-    height:35rem;
-    display:flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.whatToDo{
-    list-style: none;
-    display:flex;
-    flex-direction: column-reverse;
-    justify-content: center;
-
-}
-.editIcon, .deleteIcon, .doneIcon{
-    margin-left:2rem;
-    background:none;
-    border:none;
-}
-.editIcon img, .deleteIcon img, .doneIcon img{
-    width:1rem;
-    height:1rem;
-}
-
-.addHeader{
-    color:#4A4A4A;
-}
-
-.addTask{
-    height:5rem;
-    background-color:#F1F1F1;
-    display: flex;
     align-items: center;
     justify-content: space-around;
-}
 
-.taskInput{
-    text-align: center;
-    margin:1rem;
 }
-.taskInput #task{
-    width:13rem;
+.userBar img{
+    width:2rem;
+    height:2rem;
+    margin:auto;
 }
-.taskInput #task::placeholder{
+.greetings{
+    color:#754944;
+}
+.username{
+    color: #000000;
+}
+.greetingsWrapper{
+    border:2px solid #9FB188;
+    padding:0.3rem;
+}
+.taskList{
+    background-color:#A39C9D;
+    height:20rem;
+    width:16rem;
+    position:absolute;
+    top:25rem;
+
+}
+.listWrapper{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    height:20rem;
+}
+.addingPanel{
+    background-color:#9FB188;
+    height:5rem;
+    width:16rem;
+    position:absolute;
+    top:45rem;
     text-align: center;
-    width:13rem;
+}
+.addingPanel label{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#addTask::placeholder{
+    text-align: center;
 }
 .addButton{
-    -webkit-border-radius: 0;
-    -moz-border-radius: 0;
-    border-radius: 0;
-    color: #ffffff;
-    font-size: 1rem;
-    background: #8FECC8;
-    text-decoration: none;
-    width:5rem;
+    margin-top:1.8rem;
+
+}
+.addButton img{
+    width:2rem;
     height:2rem;
-
 }
-
-.addButton:hover {
-    background: #ff395e;
-    text-decoration: none;
+.tasks{
+    font-size:0.5rem;
 }
-
+/*----------------FOOTER-----------------------------------------*/
 footer{
     width:100vw;
-    height:2vh;
-    background-color:#4A4A4A;
+    height:1rem;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    background-color:#F1D798;
 }
 footer .credits{
     font-size:0.5rem;
-    margin-left:1rem;
-    color:#6F6F6F;
-}
-@media only screen and (min-device-width: 768px){
-    .taskList{
-        height:29rem;
-        display:flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .app {
-        height:60vh;
-        width: 60vw;
-        background-color: #FF395E;
-        margin: 2rem;
-        margin-top:0;
-        border:3px solid rgba(143, 236, 200, 0.7);
-    }
-    footer{
-        width:100vw;
-        height:4vh;
-        background-color:#4A4A4A;
-    }
-    footer .credits{
-        font-size:0.5rem;
-        margin-left:1rem;
-        color:#6F6F6F;
-    }
 }
 
-@media screen and (min-width: 1024px) {
-    .content {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        height: 100vh;
-    }
-
-    .hamburger {
-        display: none;
-    }
-
-    .menu {
-        display: inline-block;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin: 0;
-        border: 3px solid #4A4A4A;
-        flex-direction: column;
-        position: relative;
-
-    }
-
-    .user {
-        width: 20vw;
-        height: 5vh;
-        position: absolute;
-        top: 1rem;
-        display: flex;
-        justify-content: space-around;
-
-    }
-
-    .user img {
-        height: 2rem;
-        width: 2rem;
-        display: block;
-    }
-
-    .greetings {
-        font-family: Roboto, sans-serif;
-        color: #F1F1F1;
-    }
-
-    .navigation {
-        list-style: none;
-        display: flex;
-        flex-direction: column;
-    }
-
-    .ongoing, .completed, .stats {
-        background: none;
-        border: none;
-        margin-bottom: 3rem;
-        color: #6F6F6F;
-    }
-
-    .app {
-        height: 50vh;
-        width: 60vw;
-        background-color: #FF395E;
-        margin: 0;
-        border: 3px solid rgba(143, 236, 200, 0.7);
-    }
-
-    .taskList {
-        height: 28rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .addTask {
-        height: 5rem;
-        background-color: #F1F1F1;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-    }
-
-    footer {
-        width: 100vw;
-        height: 4vh;
-        background-color: #4A4A4A;
-    }
-
-    footer .credits {
-        font-size: 0.5rem;
-        margin-left: 1rem;
-        color: #6F6F6F;
-    }
-}
