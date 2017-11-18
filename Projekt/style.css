@@ -84,7 +84,7 @@ header{
     align-items: center;
 }
 /*---------------------CONTENT----------------------------------*/
-content{
+main{
     background-color:#754944;
     width:100vw;
     height:40rem;
@@ -94,7 +94,7 @@ content{
     color:#e3e3e3;
     flex-direction: column;
 }
-content h1{
+main h1{
     font-size:1.5rem;
     text-align: center;
 
@@ -163,7 +163,7 @@ content h1{
     top:45rem;
     text-align: center;
 }
-.addingPanel label{
+.addingPanel .addingTask{
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -173,6 +173,8 @@ content h1{
 }
 .addButton{
     margin-top:1.8rem;
+    background:none;
+    border:none;
 
 }
 .addButton img{
@@ -185,7 +187,6 @@ content h1{
 /*----------------FOOTER-----------------------------------------*/
 footer{
     width:100vw;
-    height:1rem;
     display:flex;
     align-items: center;
     justify-content: center;
