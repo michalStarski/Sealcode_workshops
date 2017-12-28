@@ -11,6 +11,7 @@ var count = 0; // checking if a function has been called at least once
 var x = 0; //array position
 var tPos = 0; // task position
 
+
 //-------------------------
 
 //TASKS ARRAY/PSEUDO-SERVER
@@ -41,7 +42,7 @@ function setANewDate() {
     else {
         time.innerHTML = hours + ':' + minutes + ':' + seconds;
     }
-    setTimeout(setANewDate,1000);
+    setTimeout(setANewDate,1000); //Refresh a function, clock will change live
 
 }
 

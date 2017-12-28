@@ -12,7 +12,7 @@
 
 </head>
 
-<body onclick="ifCompleted()">
+<body onload="ifCompleted()">
     <header>
         <div class="background"></div>
         <div class="logoWrapper">
@@ -32,9 +32,6 @@
                 <span class="greetings">hello</span><span class="username">Username</span>
                 </div>
                 <img class="userBarImg" src="img/Hamburger_icon.png" alt="toogleMenu">
-                <nav>
-
-                </nav>
                 <div class="taskList">
                     <div class="listWrapper">
                         <div class="dateWrapper">
@@ -55,6 +52,13 @@
                         </div>
                     </div>
             </div>
+            <nav class="menu">
+                <ul class="menuList">
+                    <li class="menuElement">Completed Tasks</li>
+                    <li class="menuElement">On-Going Tasks</li>
+                    <li class="menuElement">Credits</li>
+                </ul>
+            </nav>
         </div>
     </div>
     </main>
