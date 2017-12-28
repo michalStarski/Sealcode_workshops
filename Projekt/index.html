@@ -9,11 +9,10 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
-    <!--<link rel="stylesheet" href="//basehold.it/24">-->
 
 </head>
 
-<body>
+<body onclick="ifCompleted()">
     <header>
         <div class="background"></div>
         <div class="logoWrapper">
@@ -28,40 +27,33 @@
     <div class="app">
         <div class="appArea">
             <div class="userBar">
-                <img src="img/user.png" alt="userAvatar">
+                <img class="userBarImg" src="img/user.png" alt="userAvatar">
                 <div class="greetingsWrapper">
                 <span class="greetings">hello</span><span class="username">Username</span>
                 </div>
-                <img src="img/Hamburger_icon.png" alt="toogleMenu">
+                <img class="userBarImg" src="img/Hamburger_icon.png" alt="toogleMenu">
                 <nav>
 
                 </nav>
                 <div class="taskList">
                     <div class="listWrapper">
-                        <h2 class="date">DD.MM.YYY</h2>
-                    <ol class="tasks">
-                        <li>Lorem Ipsum is simply <input class="done" type="checkbox"> <button class="delete"><img
-                                src="img/delete.png" alt="delete"></button></li>
-                        <li>It is a long established <input class="done" type="checkbox"> <button class="delete"><img
-                                src="img/delete.png" alt="delete"></button></li>
-                        <li>There are many <input class="done" type="checkbox"> <button class="delete"><img
-                                src="img/delete.png" alt="delete"></button></li>
-                        <li>The standard chunk <input class="done" type="checkbox"> <button class="delete"><img
-                                src="img/delete.png" alt="delete"></button></li>
-                        <li>de Finibus Bonorum <input class="done" type="checkbox"> <button class="delete"><img
-                                src="img/delete.png" alt="delete"></button></li>
-                        <li>Latin words, combined <input class="done" type="checkbox"> <button class="delete"><img
-                                src="img/delete.png" alt="delete"></button></li>
-                    </ol>
+                        <div class="dateWrapper">
+                        <h2 id ='setDate' class="date">DD.MM.YYY</h2>
+                        <h2 id="time" class="date">time</h2>
+                        </div>
+                    <ul id="list" class="tasks">
+                        <!--<li><p>Lorem Ipsum is simply</p><input class="done" type="checkbox"><button class="delete"><img src="img/delete.png"></button>!-->
+                        <li id="emptyMsg" class="empty">No tasks for today!</li>
+                    </ul>
                     </div>
                 </div>
                 <div class="addingPanel">
-                    <div class="addingTask">
+                        <div class="addingTask">
                         <label for="addTask">Add a task!</label>
-                    <input id="addTask" type="text" placeholder="What are you going to do today?">
-                        <button class="addButton"><img src="img/add.png" alt="addButton"></button>
+                        <input id="addTask" type="text" placeholder="What are you going to do today?">
+                        <button type="submit" id="btn" class="addButton"><img class="userBarImg" src="img/add.png" alt="addButton"></button>
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>
@@ -69,5 +61,6 @@
     <footer>
         <span class="credits">&copy;Michał Starski 2017, todo.list made for Sealhub workshops</span>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -127,7 +127,7 @@ main h1{
     justify-content: space-around;
 
 }
-.userBar img{
+.userBarImg{
     width:2rem;
     height:2rem;
     margin:auto;
@@ -148,15 +148,21 @@ main h1{
     width:16rem;
     position:absolute;
     top:25rem;
-
 }
+
 .listWrapper{
     display:flex;
     flex-wrap:wrap;
     justify-content: center;
     align-items: center;
     height:20rem;
+    overflow: scroll;
 }
+
+.dateWrapper{
+    text-align: center;
+}
+
 .addingPanel{
     background-color:#9FB188;
     height:5rem;
@@ -187,11 +193,18 @@ main h1{
     font-size:0.5rem;
 }
 
+.empty{
+    font-size: 2rem;
+    text-align: center;
+    list-style: none;
+}
+
 .delete{
     background:none;
     border:none;
+    margin-left:1rem;
 }
-.delete img{
+.deleteImg{
     width:1rem;
     height:1rem;
 }
