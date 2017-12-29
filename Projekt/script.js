@@ -1,5 +1,8 @@
 //---------------------------------TODOLIST SCRIPT FILE--------------------------------------
 
+
+//-------------APP MECHANISM--------------
+
 //VARIABLES
 //-------------------------
 
@@ -168,7 +171,32 @@ function ifCompleted(){
 }
 
 
+
 //EVENT HANDLERS
 
 input.addEventListener('click', addATask);
+
+//--------MENU SCRIPT-----------
+
+//VARIABLES
+
+var hamburger = document.getElementById('hamburger');
+var menu = document.getElementsByClassName('menu')[0];
+var completedBtn = document.getElementById('menuBtn1');
+
+//TOOGLE MENU
+
+function toggleMenu(){
+    menu.classList.toggle('toggleMenu'); //display:block toggle function
+}
+
+hamburger.addEventListener('click',toggleMenu);
+
+
+
+//BUTTONS
+
+//Completed Tasks btn
+
+
 

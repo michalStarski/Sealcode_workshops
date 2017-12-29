@@ -118,15 +118,8 @@ main h1{
 
 }
 
-.menu{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-}
 
 .userBar{
-    background-color:white;
     height:3rem;
     width:16rem;
     background-color:#F1D798;
@@ -140,6 +133,52 @@ main h1{
     height:2rem;
     margin:auto;
 }
+
+.hamburger{
+    width:2rem;
+    height:2rem;
+    margin:auto;
+    position:relative;
+    z-index: 10000;
+}
+
+.menu{
+    position:relative;
+    z-index:100000000;
+    height:20rem;
+    background: #ffafbd; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #ffafbd, #ffc3a0); /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #ffafbd, #ffc3a0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menuTitle{
+    display:none;
+}
+
+.toggleMenu{
+    display:none;
+}
+
+.menuList{
+    list-style:none;
+    text-align: center;
+}
+.menuElement{
+    border:2px solid #fefefe;
+    padding:1rem;
+    background:none;
+    margin:1rem;
+    width:10rem;
+}
+.menuElement:hover{
+    background-color:#ffffff;
+    color: #e1e0e3;
+    transition:400ms;
+}
+
 
 .greetings{
     color:#754944;
@@ -229,5 +268,56 @@ footer{
 footer .credits{
     font-size:0.5rem;
 
+
+}
+
+
+/*-----------------MEDIA QUERIES-------------------*/
+
+@media screen and (min-width:1024px){
+
+    /*USER BAR CHANGES*/
+
+    .hamburger{
+        display:none;
+    }
+    .userBar{
+        height:3rem;
+        width:16rem;
+        background-color:#F1D798;
+        display:flex;
+        align-items: center;
+        justify-content: space-around;
+
+    }
+    .userBarImg{
+        margin:0px;
+    }
+
+    /*MENU CHANGES*/
+
+    .toggleMenu{
+        display:block;
+    }
+    .menu{
+        position:relative;
+        z-index:100000000;
+        height:50vh;
+        background: #ffafbd; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to bottom, #ffafbd, #ffc3a0); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to bottom, #ffafbd, #ffc3a0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        right:30vw;
+        border:1px solid #ffffff;
+        border-radius: 10px;
+    }
+
+    .menuTitle{
+        display:block;
+        color:#ffffff;
+    }
 
 }

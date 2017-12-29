@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
 </head>
 
@@ -31,7 +31,7 @@
                 <div class="greetingsWrapper">
                 <span class="greetings">hello</span><span class="username">Username</span>
                 </div>
-                <img class="userBarImg" src="img/Hamburger_icon.png" alt="toogleMenu">
+                <img class="hamburger" id="hamburger" src="img/Hamburger_icon.png" alt="toogleMenu">
                 <div class="taskList">
                     <div class="listWrapper">
                         <div class="dateWrapper">
@@ -52,11 +52,12 @@
                         </div>
                     </div>
             </div>
-            <nav class="menu">
+            <nav class="menu toggleMenu">
+                <h1 class="menuTitle">Menu</h1>
                 <ul class="menuList">
-                    <li class="menuElement">Completed Tasks</li>
-                    <li class="menuElement">On-Going Tasks</li>
-                    <li class="menuElement">Credits</li>
+                    <li><button class="menuElement" id="menuBtn1">Completed Tasks</button></li>
+                    <li><button class="menuElement" id="menuBtn2">On-Going Tasks</button></li>
+                    <li><button class="menuElement" id="menuBtn3">Credits</button></li>
                 </ul>
             </nav>
         </div>
