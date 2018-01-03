@@ -13,6 +13,8 @@ var btn = document.getElementById('btn'); //add button
 var list = document.getElementById('list'); //task list
 var hamburger = document.getElementById('hamburger'); //hamburger button
 var delBtn = document.getElementsByClassName('deleteImg'); //delete button
+var cBox = document.getElementsByClassName('done');
+
 
 //numbers
 
@@ -22,7 +24,7 @@ var delBtn = document.getElementsByClassName('deleteImg'); //delete button
 
 //TASKS ARRAY/PSEUDO-SERVER
 
-var tasks = new Array();
+var tasks = [];
 
 
 //TIME AND DATE SECTION
@@ -59,15 +61,14 @@ setANewDate();
 var task = function(value){
     this.status = 'onGoing'; //Object status
     this.value = value; //String
-}
+};
 
 
 //ADDING A TASK FUNCTION
 
 function addATask(){
     if(input.value !== '') {
-        var t = new task(input.value, position); //If array isn't empty create a new task object
-        position++;
+        var t = new task(input.value); //If array isn't empty create a new task object
         tasks.push(t);
     }else{
         alert("You can't add an empty task!"); //Empty task prevention
@@ -75,6 +76,7 @@ function addATask(){
     // alert("You've added a task: " + input.value);
     display(tasks);
     deleteATask();
+    completeATask();
     input.value= '';
     console.log(tasks);
 }
@@ -118,13 +120,53 @@ function deleteATask(){
     }
 }
 
+//COMPLETE A TASK
+
+var completed = [];
+
+function completeATask(){
+    for(var x=0; x<cBox.length; x++){
+        var check = cBox[x];
+        check.addEventListener('change', function(){
+            if(this.checked){
+                var pos = tasks.map(function (t) { return t.value }).indexOf(this.parentNode.parentNode.textContent);
+                tasks[pos].status='completed';
+                this.parentNode.parentNode.remove();
+            }else{
+                var pos = tasks.map(function (t) { return t.value }).indexOf(this.parentNode.parentNode.textContent);
+                tasks[pos].status='onGoing';
+                this.parentNode.parentNode.remove();
+            }
+            transfer(); //transfer files after changing status
+        })
+    }
+}
+
+//TRANSFER COMPLETE STATUS TASKS TO ANOTHER ARRAY
+
+function transfer(){
+    for(var i =0; i<tasks.length; i++){
+        if(tasks[i].status==='completed'){ //check for status
+            completed.push(tasks[i]); //add to completed array
+            tasks.splice(i,1); //delete from previous array
+            console.log(completed);
+        }
+    }
+}
+
 
 //TOGGLE MENU
 
-function toggle(){
+function toggle(){ //toggles menu after clicking hamburger in mobile version of an app
     var menu = document.getElementsByClassName('menu')[0];
     menu.classList.toggle('toggleMenu');
 }
 
 btn.addEventListener('click', addATask);
 hamburger.addEventListener('click', toggle);
+
+
+//CLICKING BUTTONS ON MENU
+
+//1) Completed tasks
+
