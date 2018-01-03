@@ -200,7 +200,7 @@ main h1{
 
 .listWrapper{
     display:flex;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     height:20rem;
@@ -208,7 +208,10 @@ main h1{
 }
 
 .dateWrapper{
+    margin-top:2rem;
+    margin-bottom:2rem;
     text-align: center;
+    width:256px;
 }
 
 .addingPanel{
@@ -256,6 +259,7 @@ main h1{
     width:1rem;
     height:1rem;
 }
+
 
 /*----------------FOOTER-----------------------------------------*/
 footer{

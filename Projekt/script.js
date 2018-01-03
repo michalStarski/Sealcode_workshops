@@ -7,12 +7,15 @@
 //-------------------------
 
 //elements variables
-var input = document.getElementById('btn');
+
+var input = document.getElementById('addTask'); //input field
+var btn = document.getElementById('btn'); //add button
+var list = document.getElementById('list'); //task list
+var hamburger = document.getElementById('hamburger'); //hamburger button
+var delBtn = document.getElementsByClassName('deleteImg'); //delete button
 
 //numbers
-var count = 0; // checking if a function has been called at least once
-var x = 0; //array position
-var tPos = 0; // task position
+
 
 
 //-------------------------
@@ -45,7 +48,7 @@ function setANewDate() {
     else {
         time.innerHTML = hours + ':' + minutes + ':' + seconds;
     }
-    setTimeout(setANewDate,1000); //Refresh a function, clock will change live
+    setTimeout(setANewDate,1000); //Refresh function, clock will change live
 
 }
 
@@ -53,150 +56,75 @@ setANewDate();
 
 //CREATING A TASK OBJECT
 
-var task = function(value, position){
+var task = function(value){
     this.status = 'onGoing'; //Object status
     this.value = value; //String
-    this.position = position;
 }
 
 
-
-//DISPLAY ELEMENT
-
-function display(){
-    var position = document.getElementById('list');
-    if(Array.isArray(tasks) && tasks instanceof Array && tasks.length > 0) {
-        if (count === 0) {
-            position.innerHTML = ''; //Erasing an empty message
-        }
-        //CREATING A LIST ELEMENT
-        if(tasks.length>1)
-            position.innerHTML='';
-        for(x=0; x<tasks.length; x++){
-            var text = document.createTextNode(x + 1 + '. ' + tasks[x].value + '   ');
-            var newElement = document.createElement('p');
-            newElement.appendChild(text);
-            position.appendChild(newElement);
-            newElement.setAttribute('id', 'paragraph' + x);
-            var newCheckbox = document.createElement('input');
-            newCheckbox.setAttribute('type', 'checkbox');
-            newCheckbox.setAttribute('class', 'done');
-            newElement.appendChild(newCheckbox);
-            var newDelete = document.createElement('button');
-            newElement.appendChild(newDelete);
-            newDelete.setAttribute('class', 'delete');
-            var deleteImg = document.createElement('img');
-            deleteImg.setAttribute('src', 'img/delete.png');
-            deleteImg.setAttribute('class', 'deleteImg');
-            deleteImg.setAttribute('id', 'dbtn' + x);
-            deleteImg.setAttribute('value', 'eventNo');
-            newDelete.appendChild(deleteImg);
-            count++;
-        }
-    }
-}
-
-
-function displayCompleted(){
-
-}
-
-
-
-//ADDING A TASK
+//ADDING A TASK FUNCTION
 
 function addATask(){
-    setANewDate();
-    if(document.getElementById('addTask').value===''){  //Checking for empty string
-        alert('Nie możesz dodać pustego zadania!');
+    if(input.value !== '') {
+        var t = new task(input.value, position); //If array isn't empty create a new task object
+        position++;
+        tasks.push(t);
     }else{
-        //Actual function
-        var t = new task((document.getElementById('addTask').value.replace(/\s+/g,' ').trim()), tPos); //Loading an input and removing useless whitespaces
-        tasks.push(t); //Add object to an array
-        document.getElementById('addTask').value=''; //Resetting the value of an input
-        tPos++; // increase index
+        alert("You can't add an empty task!"); //Empty task prevention
     }
-    display();
-    for(var index=0; index<tasks.length; index++){
-        removeATask(document.getElementById('dbtn' + index), index); //adding a listener to every element
-    }
-    for(var checkboxes=0; checkboxes<tasks.length; checkboxes++){
-        completeATask(checkboxes); //adding a listener to every element
-    }
+    // alert("You've added a task: " + input.value);
+    display(tasks);
+    deleteATask();
+    input.value= '';
+    console.log(tasks);
 }
 
-//REMOVE FUNCTION
+//DISPLAY ON-GOING TASKS
 
-function removeATask(btn, i){
-    if(btn.value!=='eventYes') { //preventing from changing position value
-        btn.addEventListener('click', function () {
-            btn.parentNode.parentNode.innerHTML = '';
-            var index = tasks.map(function (t) {
-                return t.position;
-            }).indexOf(i); // Return array of positions
-            tasks.splice(index, 1);
-            alert("You've successfully deleted a task!");
-        });
-        btn.value = 'eventYes';
-    }
-}
-
-
-//COMPLETE A TASK FUNCTION
-
-var cTasks = new Array(); //Array of completed tasks;
-
-function completeATask(i){
-    var checkbox = document.querySelectorAll('.done');
-        checkbox[i].addEventListener('change', function(){
-            var index = tasks.map(function (t) {
-                return t.position;
-            }).indexOf(i); // Return array of positions
-            if(this.checked){
-                tasks[index].status='completed';
-                alert("You've Completed a Task!");
-                checkbox[i].parentNode.innerHTML='';
-            }
-        })
-}
-
-
-function ifCompleted(){
-    for(var i = 0; i<tasks.length; i++){
-        if(tasks[i].status==='completed'){
-            cTasks.push(tasks[i]); //Push completed task to a new array
-            tasks.splice(i,1); //Remove it from old one
+function display(arr){
+    if(Array.isArray(arr) && arr instanceof Array){
+        list.innerHTML='';
+        for(var i = 0; i<arr.length; i++){
+                var e = document.createElement('li');
+                var text = document.createTextNode(arr[i].value);
+                var checkbox = document.createElement('input');
+                var deleteBtn = document.createElement('button');
+                var deleteImg = document.createElement('img');
+                checkbox.setAttribute('type', 'checkbox');
+                checkbox.setAttribute('class', 'done');
+                deleteBtn.setAttribute('class', 'delete');
+                deleteBtn.appendChild(deleteImg);
+                deleteImg.setAttribute('src', 'img/delete.png');
+                deleteImg.setAttribute('class', 'deleteImg');
+                e.appendChild(text);
+                e.appendChild(checkbox);
+                e.appendChild(deleteBtn);
+                list.appendChild(e);
         }
     }
 }
 
+//DELETE A TASK
 
-
-//EVENT HANDLERS
-
-input.addEventListener('click', addATask);
-
-//--------MENU SCRIPT-----------
-
-//VARIABLES
-
-var hamburger = document.getElementById('hamburger');
-var menu = document.getElementsByClassName('menu')[0];
-var completedBtn = document.getElementById('menuBtn1');
-
-//TOOGLE MENU
-
-function toggleMenu(){
-    menu.classList.toggle('toggleMenu'); //display:block toggle function
+function deleteATask(){
+    for(var x=0; x<delBtn.length; x++){
+        var button = delBtn[x];
+        button.addEventListener('click', function(){
+            var pos = tasks.map(function (t) { return t.value }).indexOf(this.parentNode.parentNode.textContent); //array of updated positions
+            tasks.splice(pos,1); //delete from an array
+            this.parentNode.parentNode.remove(); //delete li element
+            console.log(tasks); //debugger
+        })
+    }
 }
 
-hamburger.addEventListener('click',toggleMenu);
 
+//TOGGLE MENU
 
+function toggle(){
+    var menu = document.getElementsByClassName('menu')[0];
+    menu.classList.toggle('toggleMenu');
+}
 
-//BUTTONS
-
-//Completed Tasks btn
-
-
-
+btn.addEventListener('click', addATask);
+hamburger.addEventListener('click', toggle);
