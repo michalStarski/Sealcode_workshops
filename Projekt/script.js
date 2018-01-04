@@ -87,21 +87,21 @@ function display(arr){
     if(Array.isArray(arr) && arr instanceof Array){
         list.innerHTML='';
         for(var i = 0; i<arr.length; i++){
-                var e = document.createElement('li');
-                var text = document.createTextNode(arr[i].value);
-                var checkbox = document.createElement('input');
-                var deleteBtn = document.createElement('button');
-                var deleteImg = document.createElement('img');
-                checkbox.setAttribute('type', 'checkbox');
-                checkbox.setAttribute('class', 'done');
-                deleteBtn.setAttribute('class', 'delete');
-                deleteBtn.appendChild(deleteImg);
-                deleteImg.setAttribute('src', 'img/delete.png');
-                deleteImg.setAttribute('class', 'deleteImg');
-                e.appendChild(text);
-                e.appendChild(checkbox);
-                e.appendChild(deleteBtn);
-                list.appendChild(e);
+            var e = document.createElement('li');
+            var text = document.createTextNode(arr[i].value);
+            var checkbox = document.createElement('input');
+            var deleteBtn = document.createElement('button');
+            var deleteImg = document.createElement('img');
+            checkbox.setAttribute('type', 'checkbox');
+            checkbox.setAttribute('class', 'done');
+            deleteBtn.setAttribute('class', 'delete');
+            deleteBtn.appendChild(deleteImg);
+            deleteImg.setAttribute('src', 'img/delete.png');
+            deleteImg.setAttribute('class', 'deleteImg');
+            e.appendChild(text);
+            e.appendChild(checkbox);
+            e.appendChild(deleteBtn);
+            list.appendChild(e);
         }
     }
 }
@@ -129,13 +129,11 @@ function completeATask(){
         var check = cBox[x];
         check.addEventListener('change', function(){
             if(this.checked){
-                var pos = tasks.map(function (t) { return t.value }).indexOf(this.parentNode.parentNode.textContent);
-                tasks[pos].status='completed';
-                this.parentNode.parentNode.remove();
-            }else{
-                var pos = tasks.map(function (t) { return t.value }).indexOf(this.parentNode.parentNode.textContent);
-                tasks[pos].status='onGoing';
-                this.parentNode.parentNode.remove();
+                var pos = tasks.map(function (t) { return t.value }).indexOf(this.parentNode.textContent);
+                if(tasks[pos].status === 'onGoing'){
+                    tasks[pos].status = 'completed'; //change status for transfer
+                    this.parentNode.remove(); //remove from onGoing list
+                }
             }
             transfer(); //transfer files after changing status
         })
