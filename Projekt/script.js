@@ -42,16 +42,11 @@ function setANewDate() {
     var month = months[d.getMonth()];
     var year = d.getFullYear();
     var time = document.getElementById('time');
-    var hours = d.getHours();
-    var minutes = d.getMinutes();
-    var seconds  = d.getSeconds();
+    var hours = ('0' + d.getHours()).slice(-2); //whenever number has only 1 digit it displays 0 before
+    var minutes = ('0' + d.getMinutes()).slice(-2); //slice takes only 2 lasts digits from string
+    var seconds  = ('0' + d.getSeconds()).slice(-2);
     getDate.innerHTML= weekday + ', ' + day + ' ' + month + ' ' + year;
-    if(minutes<10) {
-        time.innerHTML = hours + ':' + '0' + minutes + ':' + seconds;
-    }
-    else {
-        time.innerHTML = hours + ':' + minutes + ':' + seconds;
-    }
+    time.innerHTML = hours + ':'+ minutes + ':' + seconds;
     setTimeout(setANewDate,1000); //Refresh function, clock will change live
 
 }
