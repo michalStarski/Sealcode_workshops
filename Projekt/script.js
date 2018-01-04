@@ -1,4 +1,4 @@
-//---------------------------------TODOLIST SCRIPT FILE--------------------------------------
+//---------------------------------TO DO LIST SCRIPT FILE--------------------------------------
 
 
 //-------------APP MECHANISM--------------
@@ -13,18 +13,20 @@ var btn = document.getElementById('btn'); //add button
 var list = document.getElementById('list'); //task list
 var hamburger = document.getElementById('hamburger'); //hamburger button
 var delBtn = document.getElementsByClassName('deleteImg'); //delete button
-var cBox = document.getElementsByClassName('done');
+var cBox = document.getElementsByClassName('done'); //checkbox
 
+//menu buttons
 
-//numbers
-
-
+var menuCompleted = document.getElementById('menuBtn1');
+var menuOnGoing = document.getElementById('menuBtn2');
+var menuCredits = document.getElementById('menuBtn3');
 
 //-------------------------
 
 //TASKS ARRAY/PSEUDO-SERVER
 
 var tasks = [];
+var completed = [];
 
 
 //TIME AND DATE SECTION
@@ -116,13 +118,13 @@ function deleteATask(){
             tasks.splice(pos,1); //delete from an array
             this.parentNode.parentNode.remove(); //delete li element
             console.log(tasks); //debugger
+            ifEmpty(tasks);
         })
     }
 }
 
 //COMPLETE A TASK
 
-var completed = [];
 
 function completeATask(){
     for(var x=0; x<cBox.length; x++){
@@ -136,6 +138,7 @@ function completeATask(){
                 }
             }
             transfer(); //transfer files after changing status
+            ifEmpty(tasks);
         })
     }
 }
@@ -153,6 +156,22 @@ function transfer(){
 }
 
 
+//CHECKING IF AN ARRAY IS EMPTY
+
+function ifEmpty(arr){
+    console.log('ifEmpty!');
+    if(arr.length===0){
+        list.innerHTML='';
+        var e = document.createElement('li');
+        e.innerHTML='No tasks for today!';
+        e.setAttribute('class', 'empty');
+        e.setAttribute('id', 'emptyMsg');
+        list.appendChild(e);
+    }
+}
+
+
+
 //TOGGLE MENU
 
 function toggle(){ //toggles menu after clicking hamburger in mobile version of an app
@@ -168,3 +187,35 @@ hamburger.addEventListener('click', toggle);
 
 //1) Completed tasks
 
+menuCompleted.addEventListener('click',function () {
+   console.log('completed!'); //debugger
+   list.innerHTML=''; //preparing app space for new list
+    //displaying new list
+   for(var i=0; i<completed.length; i++) {
+       var el = document.createElement('li');
+       var textNode = document.createTextNode(completed[i].value);
+       el.appendChild(textNode);
+       list.appendChild(el);
+   }
+    ifEmpty(completed);
+});
+
+//2) On-Going tasks
+
+menuOnGoing.addEventListener('click', function () {
+   console.log('onGoing!'); //debugger
+    display(tasks); //return to display function
+    ifEmpty(tasks);
+});
+
+
+//3) Credits
+
+menuCredits.addEventListener('click', function () {
+   console.log('Credits!'); //debugger
+   list.innerHTML =''; //preparing app space for credits
+   var credits = document.createElement('li');
+   credits.innerHTML = 'Aplikację wykonał Michał Starski <br> w ramach warsztatów SealHub';
+   list.appendChild(credits);
+
+});
