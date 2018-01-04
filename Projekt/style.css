@@ -146,9 +146,7 @@ main h1{
     position:relative;
     z-index:100000000;
     height:20rem;
-    background: #ffafbd; /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #ffafbd, #ffc3a0); /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #ffafbd, #ffc3a0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background-color:#000000;
     display:flex;
     justify-content: center;
     align-items: center;
@@ -167,15 +165,22 @@ main h1{
     text-align: center;
 }
 .menuElement{
-    border:2px solid #fefefe;
+    color: #ffffff;
+    border:none;
     padding:1rem;
     background:none;
     margin:1rem;
     width:10rem;
 }
-.menuElement:hover{
-    background-color:#ffffff;
-    color: #e1e0e3;
+
+.menuElement:hover:after{
+    content:'';
+    border:5px solid #be5d72;
+    display:block;
+    transform:translateY(-.5rem);
+    z-index:-1;
+    position: relative;
+    opacity:.7;
     transition:400ms;
 }
 
@@ -307,16 +312,12 @@ footer .credits{
         position:relative;
         z-index:100000000;
         height:50vh;
-        background: #ffafbd; /* fallback for old browsers */
-        background: -webkit-linear-gradient(to bottom, #ffafbd, #ffc3a0); /* Chrome 10-25, Safari 5.1-6 */
-        background: linear-gradient(to bottom, #ffafbd, #ffc3a0); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        background:#2b2b2b;
         display:flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
         right:30vw;
-        border:1px solid #ffffff;
-        border-radius: 10px;
     }
 
     .menuTitle{
