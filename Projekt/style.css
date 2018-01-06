@@ -318,6 +318,7 @@ footer .credits{
         align-items: center;
         flex-direction: column;
         right:30vw;
+        border-radius: 10rem;
     }
 
     .menuTitle{
