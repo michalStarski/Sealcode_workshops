@@ -70,7 +70,7 @@ function addATask(){
     }else{
         alert("You can't add an empty task!"); //Empty task prevention
     }
-    // alert("You've added a task: " + input.value);
+    alert("You've added a task: " + input.value);
     display(tasks);
     deleteATask();
     completeATask();
@@ -106,8 +106,8 @@ function display(arr){
 //DELETE A TASK
 
 function deleteATask(){
-    for(var x=0; x<delBtn.length; x++){
-        var button = delBtn[x];
+    for(var k=0; k<delBtn.length; k++){
+        var button = delBtn[k];
         button.addEventListener('click', function(){
             var pos = tasks.map(function (t) { return t.value }).indexOf(this.parentNode.parentNode.textContent); //array of updated positions
             tasks.splice(pos,1); //delete from an array
@@ -141,10 +141,10 @@ function completeATask(){
 //TRANSFER COMPLETE STATUS TASKS TO ANOTHER ARRAY
 
 function transfer(){
-    for(var i =0; i<tasks.length; i++){
-        if(tasks[i].status==='completed'){ //check for status
-            completed.push(tasks[i]); //add to completed array
-            tasks.splice(i,1); //delete from previous array
+    for(var j =0; j<tasks.length; j++){
+        if(tasks[j].status==='completed'){ //check for status
+            completed.push(tasks[j]); //add to completed array
+            tasks.splice(j,1); //delete from previous array
             console.log(completed);
         }
     }
