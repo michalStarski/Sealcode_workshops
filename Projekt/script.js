@@ -1,5 +1,7 @@
 //---------------------------------TO DO LIST SCRIPT FILE--------------------------------------
 
+//Commented line of codes are for second version of app where completed tasks
+//goes to another array
 
 //-------------APP MECHANISM--------------
 
@@ -129,26 +131,26 @@ function completeATask(){
                 var pos = tasks.map(function (t) { return t.value }).indexOf(this.parentNode.textContent);
                 if(tasks[pos].status === 'onGoing'){
                     tasks[pos].status = 'completed'; //change status for transfer
-                    this.parentNode.remove(); //remove from onGoing list
+                    // this.parentNode.remove(); //remove from onGoing list
                 }
             }
-            transfer(); //transfer files after changing status
+            // transfer(); //transfer files after changing status
             ifEmpty(tasks);
         })
     }
 }
 
 //TRANSFER COMPLETE STATUS TASKS TO ANOTHER ARRAY
-
-function transfer(){
-    for(var j =0; j<tasks.length; j++){
-        if(tasks[j].status==='completed'){ //check for status
-            completed.push(tasks[j]); //add to completed array
-            tasks.splice(j,1); //delete from previous array
-            console.log(completed);
-        }
-    }
-}
+//
+// function transfer(){
+//     for(var j =0; j<tasks.length; j++){
+//         if(tasks[j].status==='completed'){ //check for status
+//             completed.push(tasks[j]); //add to completed array
+//             tasks.splice(j,1); //delete from previous array
+//             console.log(completed);
+//         }
+//     }
+// }
 
 
 //CHECKING IF AN ARRAY IS EMPTY
@@ -182,18 +184,18 @@ hamburger.addEventListener('click', toggle);
 
 //1) Completed tasks
 
-menuCompleted.addEventListener('click',function () {
-   console.log('completed!'); //debugger
-   list.innerHTML=''; //preparing app space for new list
-    //displaying new list
-   for(var i=0; i<completed.length; i++) {
-       var el = document.createElement('li');
-       var textNode = document.createTextNode(completed[i].value);
-       el.appendChild(textNode);
-       list.appendChild(el);
-   }
-    ifEmpty(completed);
-});
+// menuCompleted.addEventListener('click',function () {
+//    console.log('completed!'); //debugger
+//    list.innerHTML=''; //preparing app space for new list
+//     //displaying new list
+//    for(var i=0; i<completed.length; i++) {
+//        var el = document.createElement('li');
+//        var textNode = document.createTextNode(completed[i].value);
+//        el.appendChild(textNode);
+//        list.appendChild(el);
+//    }
+//     ifEmpty(completed);
+// });
 
 //2) On-Going tasks
 
