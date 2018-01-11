@@ -101,6 +101,18 @@ function display(arr){
             e.appendChild(checkbox);
             e.appendChild(deleteBtn);
             list.appendChild(e);
+            leaveChecked();
+        }
+    }
+}
+
+
+//LEAVE CHECKED TASKS CHECKED AFTER DISPLAY
+
+function leaveChecked(){
+    for(var z = 0; z<tasks.length; z++){
+        if(tasks[z].status==='completed'){
+            cBox[z].checked=true;
         }
     }
 }
@@ -133,12 +145,20 @@ function completeATask(){
                     tasks[pos].status = 'completed'; //change status for transfer
                     // this.parentNode.remove(); //remove from onGoing list
                 }
+            }else {
+                var pos = tasks.map(function (t) {
+                    return t.value
+                }).indexOf(this.parentNode.textContent);
+                if (tasks[pos].status === 'completed') {
+                    tasks[pos].status = 'onGoing';
+                }
+                // transfer(); //transfer files after changing status
+                ifEmpty(tasks);
             }
-            // transfer(); //transfer files after changing status
-            ifEmpty(tasks);
         })
     }
 }
+
 
 //TRANSFER COMPLETE STATUS TASKS TO ANOTHER ARRAY
 //
@@ -177,6 +197,12 @@ function toggle(){ //toggles menu after clicking hamburger in mobile version of 
 }
 
 btn.addEventListener('click', addATask);
+document.addEventListener('keydown', function(){
+    var keyName = event.key;
+    if(keyName === 'Enter'){
+        addATask();
+    }
+})
 hamburger.addEventListener('click', toggle);
 
 
