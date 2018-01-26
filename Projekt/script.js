@@ -1,7 +1,5 @@
 //---------------------------------TO DO LIST SCRIPT FILE--------------------------------------
 
-//Commented line of codes are for second version of app where completed tasks
-//goes to another array
 
 //-------------APP MECHANISM--------------
 
@@ -10,12 +8,10 @@
 
 //elements variables
 
-var input = document.getElementById('addTask'); //input field
-var btn = document.getElementById('btn'); //add button
+var submit = document.getElementById('addTask'); //input field
+var add = document.getElementById('btn'); //add button
 var list = document.getElementById('list'); //task list
 var hamburger = document.getElementById('hamburger'); //hamburger button
-var delBtn = document.getElementsByClassName('deleteImg'); //delete button
-var cBox = document.getElementsByClassName('done'); //checkbox
 
 //menu buttons
 
@@ -30,6 +26,9 @@ var menuCredits = document.getElementById('menuBtn3');
 var tasks = [];
 var completed = [];
 
+//SEALCODE API URL
+
+var url='http://sealcode.org:8082/api/v1/resources/task';
 
 //TIME AND DATE SECTION
 
@@ -50,195 +49,114 @@ function setANewDate() {
     getDate.innerHTML= weekday + ', ' + day + ' ' + month + ' ' + year;
     time.innerHTML = hours + ':'+ minutes + ':' + seconds;
     setTimeout(setANewDate,1000); //Refresh function, clock will change live
-
 }
 
-setANewDate();
+//FUNCTIONS THAT STARTS AUTOMATICALLY AFTER PAGE LOADS
+window.addEventListener('load',function () {
+    setANewDate();
+    getTasks();
+    display();
+});
 
-//CREATING A TASK OBJECT
+//API, QWEST LIBRARY FUNCTIONS
 
-var task = function(value){
-    this.status = 'onGoing'; //Object status
-    this.value = value; //String
-};
+//downolad tasks from server
 
-
-//ADDING A TASK FUNCTION
-
-function addATask(){
-    if(input.value !== '') {
-        var t = new task(input.value); //If array isn't empty create a new task object
-        tasks.push(t);
-    }else{
-        alert("You can't add an empty task!"); //Empty task prevention
-    }
-    alert("You've added a task: " + input.value);
-    display(tasks);
-    deleteATask();
-    completeATask();
-    input.value= '';
-    console.log(tasks);
+function getTasks() {
+    qwest.get(url, {}, {cache: true}).then(
+        function(xhr, response) {
+            response.forEach(function(element) {
+                tasks.push(element);
+                display();
+            })});
 }
 
-//DISPLAY ON-GOING TASKS
+//send tasks to the server
 
-function display(arr){
-    if(Array.isArray(arr) && arr instanceof Array){
-        list.innerHTML='';
-        for(var i = 0; i<arr.length; i++){
-            var e = document.createElement('li');
-            var text = document.createTextNode(arr[i].value);
-            var checkbox = document.createElement('input');
-            var deleteBtn = document.createElement('button');
-            var deleteImg = document.createElement('img');
-            checkbox.setAttribute('type', 'checkbox');
-            checkbox.setAttribute('class', 'done');
-            deleteBtn.setAttribute('class', 'delete');
-            deleteBtn.appendChild(deleteImg);
-            deleteImg.setAttribute('src', 'img/delete.png');
-            deleteImg.setAttribute('class', 'deleteImg');
-            e.appendChild(text);
-            e.appendChild(checkbox);
-            e.appendChild(deleteBtn);
-            list.appendChild(e);
-            leaveChecked();
-        }
-    }
+function addTaskServer(task) {
+    qwest.post(url, {title: task.title, is_done: task.is_done}, {cache: true});
+}
+
+//status change
+
+function checkboxClick(event) {
+    tasks[this.id].body.is_done = this.checked;
+    qwest.map('PATCH', url+'/'+tasks[this.id].id, tasks[this.id].body, {cache: true}).then(function(xhr, response) {
+        display();
+    });
+}
+
+//delete from server
+
+function deleteTask() {
+    qwest.delete(url+'/'+tasks[this.id].id, null, {cache: true}).then(function(xhr, response) {
+        display();
+    });
+}
+
+//DECLARING A TASK OBJECT
+
+function task(title, status){
+    this.title = title;
+    this.is_done = status;
 }
 
 
-//LEAVE CHECKED TASKS CHECKED AFTER DISPLAY
+//DISPLAY TASKS FROM AN ARRAY
 
-function leaveChecked(){
-    for(var z = 0; z<tasks.length; z++){
-        if(tasks[z].status==='completed'){
-            cBox[z].checked=true;
-        }
-    }
-}
+function display(){
+    list.innerHTML='';
+    for(var i=0; i<tasks.length; i++){
+        var li = document.createElement('li')
+        var e = document.createElement('p');
+        var text = document.createTextNode(tasks[i].body.title);
+        var input = document.createElement('input');
+        var btn = document.createElement('button');
+        var delImg = document.createElement('img');
+        input.setAttribute('type', 'checkbox');
+        input.setAttribute('class', 'done');
+        input.setAttribute('id', i);
+        btn.setAttribute('class', 'delete');
+        btn.setAttribute('id', i);
+        btn.appendChild(delImg);
+        delImg.setAttribute('src', 'img/delete.png');
+        delImg.setAttribute('class', 'deleteImg');
 
-//DELETE A TASK
+        li.appendChild(e);
+        li.appendChild(input);
+        li.appendChild(btn);
+        btn.appendChild(delImg);
+        e.appendChild(text);
+        list.appendChild(li);
 
-function deleteATask(){
-    for(var k=0; k<delBtn.length; k++){
-        var button = delBtn[k];
-        button.addEventListener('click', function(){
-            var pos = tasks.map(function (t) { return t.value }).indexOf(this.parentNode.parentNode.textContent); //array of updated positions
-            tasks.splice(pos,1); //delete from an array
-            this.parentNode.parentNode.remove(); //delete li element
-            console.log(tasks); //debugger
-            ifEmpty(tasks);
-        })
-    }
-}
+        input.addEventListener('change', checkboxClick);
+        btn.addEventListener('click',deleteTask);
 
-//COMPLETE A TASK
-
-
-function completeATask(){
-    for(var x=0; x<cBox.length; x++){
-        var check = cBox[x];
-        check.addEventListener('change', function(){
-            if(this.checked){
-                var pos = tasks.map(function (t) { return t.value }).indexOf(this.parentNode.textContent);
-                if(tasks[pos].status === 'onGoing'){
-                    tasks[pos].status = 'completed'; //change status for transfer
-                    // this.parentNode.remove(); //remove from onGoing list
-                }
-            }else {
-                var pos = tasks.map(function (t) {
-                    return t.value
-                }).indexOf(this.parentNode.textContent);
-                if (tasks[pos].status === 'completed') {
-                    tasks[pos].status = 'onGoing';
-                }
-                // transfer(); //transfer files after changing status
-                ifEmpty(tasks);
-            }
-        })
     }
 }
 
+//ADDING A TASK
 
-//TRANSFER COMPLETE STATUS TASKS TO ANOTHER ARRAY
-//
-// function transfer(){
-//     for(var j =0; j<tasks.length; j++){
-//         if(tasks[j].status==='completed'){ //check for status
-//             completed.push(tasks[j]); //add to completed array
-//             tasks.splice(j,1); //delete from previous array
-//             console.log(completed);
-//         }
-//     }
-// }
-
-
-//CHECKING IF AN ARRAY IS EMPTY
-
-function ifEmpty(arr){
-    console.log('ifEmpty!');
-    if(arr.length===0){
-        list.innerHTML='';
-        var e = document.createElement('li');
-        e.innerHTML='No tasks for today!';
-        e.setAttribute('class', 'empty');
-        e.setAttribute('id', 'emptyMsg');
-        list.appendChild(e);
-    }
+function enterATask(){
+    var v = submit.value.replace(/\s+/g, " ").trim();
+    if(v) {
+        var t = new task(v, false);
+        addTaskServer(t);
+        getTasks();
+        location.reload(); //refresh site
+    }else
+        alert("You can't add an empty message"); //error msg
 }
 
+//Enter submit
 
-
-//TOGGLE MENU
-
-function toggle(){ //toggles menu after clicking hamburger in mobile version of an app
-    var menu = document.getElementsByClassName('menu')[0];
-    menu.classList.toggle('toggleMenu');
-}
-
-btn.addEventListener('click', addATask);
 document.addEventListener('keydown', function(){
     var keyName = event.key;
     if(keyName === 'Enter'){
-        addATask();
+        enterATask();
     }
 })
-hamburger.addEventListener('click', toggle);
 
+//Mouse click submit
 
-//CLICKING BUTTONS ON MENU
-
-//1) Completed tasks
-
-// menuCompleted.addEventListener('click',function () {
-//    console.log('completed!'); //debugger
-//    list.innerHTML=''; //preparing app space for new list
-//     //displaying new list
-//    for(var i=0; i<completed.length; i++) {
-//        var el = document.createElement('li');
-//        var textNode = document.createTextNode(completed[i].value);
-//        el.appendChild(textNode);
-//        list.appendChild(el);
-//    }
-//     ifEmpty(completed);
-// });
-
-//2) On-Going tasks
-
-menuOnGoing.addEventListener('click', function () {
-   console.log('onGoing!'); //debugger
-    display(tasks); //return to display function
-    ifEmpty(tasks);
-});
-
-
-//3) Credits
-
-menuCredits.addEventListener('click', function () {
-   console.log('Credits!'); //debugger
-   list.innerHTML =''; //preparing app space for credits
-   var credits = document.createElement('li');
-   credits.innerHTML = 'Aplikację wykonał Michał Starski <br> w ramach warsztatów SealHub';
-   list.appendChild(credits);
-
-});
+add.addEventListener('click', enterATask);
