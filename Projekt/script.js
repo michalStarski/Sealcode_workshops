@@ -15,7 +15,6 @@ var hamburger = document.getElementById('hamburger'); //hamburger button
 
 //menu buttons
 
-var menuCompleted = document.getElementById('menuBtn1');
 var menuOnGoing = document.getElementById('menuBtn2');
 var menuCredits = document.getElementById('menuBtn3');
 
@@ -90,8 +89,13 @@ function checkboxClick(event) {
 
 function deleteTask() {
     qwest.delete(url+'/'+tasks[this.id].id, null, {cache: true}).then(function(xhr, response) {
-        display();
+        location.reload();
     });
+}
+
+//delete locally
+function delLocal(){
+    console.log(this.par);
 }
 
 //DECLARING A TASK OBJECT
@@ -105,8 +109,15 @@ function task(title, status){
 //DISPLAY TASKS FROM AN ARRAY
 
 function display(){
+    if(tasks.length == 0){
+        list.innerHTML='';
+        var err = document.createElement('li');
+        var errMsg = document.createTextNode('No tasks for today!');
+        err.appendChild(errMsg);
+        list.appendChild(err);
+    }else{
     list.innerHTML='';
-    for(var i=0; i<tasks.length; i++){
+    for(var i=0; i<tasks.length; i++) {
         var li = document.createElement('li')
         var e = document.createElement('p');
         var text = document.createTextNode(tasks[i].body.title);
@@ -130,7 +141,8 @@ function display(){
         list.appendChild(li);
 
         input.addEventListener('change', checkboxClick);
-        btn.addEventListener('click',deleteTask);
+        btn.addEventListener('click', deleteTask);
+    }
 
     }
 }
@@ -160,3 +172,30 @@ document.addEventListener('keydown', function(){
 //Mouse click submit
 
 add.addEventListener('click', enterATask);
+
+//MENU FUNCTIONS
+
+function toggle(){ //toggles menu after clicking hamburger in mobile version of an app
+    var menu = document.getElementsByClassName('menu')[0];
+    menu.classList.toggle('toggleMenu');
+}
+
+hamburger.addEventListener('click', toggle);
+
+//1) On-Going tasks
+
+menuOnGoing.addEventListener('click', function () {
+    console.log('onGoing!'); //debugger
+    display(tasks); //return to display function
+});
+
+
+//2) Credits
+
+menuCredits.addEventListener('click', function () {
+    console.log('Credits!'); //debugger
+    list.innerHTML =''; //preparing app space for credits
+    var credits = document.createElement('li');
+    credits.innerHTML = 'Aplikację wykonał Michał Starski <br> w ramach warsztatów SealHub';
+    list.appendChild(credits);
+});
