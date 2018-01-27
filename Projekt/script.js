@@ -142,6 +142,9 @@ function display(){
 
         input.addEventListener('change', checkboxClick);
         btn.addEventListener('click', deleteTask);
+
+        if(tasks[i].body.is_done === true)
+            input.checked = 'checked';
     }
 
     }
@@ -199,3 +202,4 @@ menuCredits.addEventListener('click', function () {
     credits.innerHTML = 'Aplikację wykonał Michał Starski <br> w ramach warsztatów SealHub';
     list.appendChild(credits);
 });
+
